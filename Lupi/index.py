@@ -1,20 +1,50 @@
 from django.http import HttpResponse
-from  django.shortcuts import render
+from django.shortcuts import render
+from .main import *
 
 
-#task1
-def scrap_wiki(request):
-    return render(request, 'scrap_wiki.html')
+# task1
 
-#task2
+def main(request):
+    context = dict()
+    context['links_count'] = 0
+    if 'url' in request.POST.keys() and 'step' in request.POST.keys() and len(request.POST['step']) > 0:
+        scraped_links = scrap(request.POST['url'], int(request.POST['step']))
+        context = scraped_links
+
+    return render(request, 'scrap_input.html', context=context)
+
+
+def scraped_wiki_pages(request):
+    # print(request.POST.keys())
+    return render(request, "url for scrap:")
+
+
+# task2
 def find_page(request):
-    return HttpResponse("Input word to find  page of departure ")
+    context = dict()
+    if 'keyword' in request.POST.keys():
+        if len(request.POST['keyword']) > 0:
+            context['posts'] = find_post(request.POST['keyword'])
+            context['direct'] = "/destination?main="
+    return render(request, 'find_page.html', context)
 
-def list_page(request):
-    return HttpResponse("List of wikipedia page-s ")
 
-def destination_page(requset):
-    return HttpResponse("Input word to find page of destination")
 
-def latest_response(request):
-    return HttpResponse("Distance in clicks between the pages")
+
+def destination_page(request):
+    context = {}
+    if 'main' in request.GET.keys():
+        main_id = request.GET['main']
+    if 'keyword' in request.POST.keys():
+        keyword = request.POST['keyword']
+        route = calculate_way(main_id, keyword)
+        try:
+            ids = route.split(',')
+            context['route'] = [find_by_id(i) for i in ids]
+        except:
+            pass
+
+        # print(type(main_id), type(keyword))
+    return render(request, 'Closest_way.html', context)
+

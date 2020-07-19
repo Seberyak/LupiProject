@@ -19,10 +19,8 @@ from . import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index.scrap_wiki),
+    path('', index.main),
     path('find/', index.find_page),
-    path('list/', index.list_page),
     path('destination/', index.destination_page),
-    path('info/', index.latest_response)
 
 ]

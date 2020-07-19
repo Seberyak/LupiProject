@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Find page</title>
+    <title>Calculate min steps to destination page</title>
 </head>
 <body>
 
 <form action="" method="POST">
     {% csrf_token %}
-    <label >Input keyword of main page:</label>
+    <label >Input keyword of destination page:</label>
     <br>
     <input type="text" name="keyword">
     <br>
@@ -16,12 +16,14 @@
     <input type="submit" value="Search">
     <br>
     <br>
-    <a href="/">Task1</a>
+    <a href="/find">Back</a>
     <br>
 </form>
-{% for post in posts %}
-    <h3><a href={{ direct }}{{ post.id }} >{{ post.name }} </a> </h3>
 <br>
+<br>
+{% for url,name in route %}
+    <h3><a href={{ name }}>{{ url }}</a></h3>
+    <br>
 {% endfor %}
 
 </body>

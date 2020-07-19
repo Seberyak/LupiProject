@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scrap wikipedia pages</title>
+</head>
+<body>
+<form action="" method="POST">
+    {% csrf_token %}
+    <label >Input url:</label>
+    <br>
+    <input type="text" name="url" value="https://en.wikipedia.org/wiki/Special:Random">
+    <br>
+    <br>
+    <label >Input steps:</label>
+    <br>
+    <input type="text" name="step">
+    <br><br>
+    <input type="submit" value="Search">
+    <br>
+    <br>
+    <a href="/find">Task2</a>
+    <br>
+</form>
+<br>
+<p>Scraped {{ links_count }} links</p>
+<br>
+<br>
+
+{% for link in links %}
+    <a target="_blank" rel="noopener noreferrer" href={{ link }}> {{ link }}</a>
+    <br>
+{% endfor %}
+
+</body>
+</html>
