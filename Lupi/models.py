@@ -11,9 +11,9 @@ class Posts(models.Model):
 
 
 class Routes(models.Model):
-    main = models.ForeignKey(Posts, on_delete=models.CASCADE)
-    destination_id = models.IntegerField()
-    ancestors = models.CharField(max_length=255)
+
+    main_id = models.IntegerField(default=0)
+    destination_id = models.IntegerField(default=0)
 
     def __str__(self):
-        return str(self.main) + ', ' + str(self.destination_id) + ',' + str(self.ancestors)
+        return str(self.main_id) + ', ' + str(self.destination_id)

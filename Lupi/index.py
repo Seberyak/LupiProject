@@ -30,10 +30,9 @@ def find_page(request):
     return render(request, 'find_page.html', context)
 
 
-
-
 def destination_page(request):
     context = {}
+    main_id = 0
     if 'main' in request.GET.keys():
         main_id = request.GET['main']
     if 'keyword' in request.POST.keys():
@@ -47,4 +46,3 @@ def destination_page(request):
 
         # print(type(main_id), type(keyword))
     return render(request, 'Closest_way.html', context)
-
