@@ -13,7 +13,7 @@ max_links = 5
 
 # default url parameter is random wikipedia page
 def scrap(url="https://en.wikipedia.org/wiki/Special:Random", step=1, ancestors="", last_ancestor=False):
-    gitprint(url)
+    print(url)
     res = requests.get(url)
     main_id = 0
     # if res.url exist in Posts : return
