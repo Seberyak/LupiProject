@@ -39,8 +39,9 @@ def destination_page(request):
         keyword = request.POST['keyword']
         route = calculate_way(main_id, keyword)
         try:
-            ids = route.split(',')
-            context['route'] = [find_by_id(i) for i in ids]
+            # ids = route.split(',')
+            context['route'] = [find_by_id(i) for i in route]
+            print(context['route'])
         except:
             pass
 

@@ -3,7 +3,7 @@ from django.db import models
 
 class Posts(models.Model):
     # id = models.AutoField(primary_key=True)
-    url = models.CharField(max_length=50, unique=True)
+    url = models.CharField(max_length=50)
     name = models.CharField(max_length=50)
 
     def __str__(self):
